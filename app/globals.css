@@ -1,0 +1,128 @@
+@import "tailwindcss";
+
+/*
+  This @theme block is Tailwind v4's replacement for the old tailwind.config.js
+  "theme.extend" section. Every variable you define here automatically becomes
+  a set of utility classes.
+
+  Example: --color-green below gives you `bg-green`, `text-green`, `border-green`, etc.
+  This is a straight port of the :root { ... } tokens from the original styles.css.
+*/
+@theme {
+  --color-bg: #0b0d12;
+  --color-bg-alt: #10141c;
+  --color-surface: #141924;
+  --color-surface-2: #1b212f;
+  --color-border: rgba(255, 255, 255, 0.09);
+  --color-border-soft: rgba(255, 255, 255, 0.05);
+
+  --color-green: #1d9e75;
+  --color-green-soft: rgba(29, 158, 117, 0.16);
+  --color-blue: #3498db;
+  --color-blue-soft: rgba(52, 152, 219, 0.16);
+  --color-amber: #f39c12;
+  --color-amber-soft: rgba(243, 156, 18, 0.16);
+  --color-red: #e74c3c;
+  --color-red-soft: rgba(231, 76, 60, 0.16);
+
+  --color-text: #f3f5f4;
+  --color-muted: #9099a8;
+  --color-muted-2: #6b7180;
+
+  /* These reference the CSS variables that next/font will generate in layout.tsx */
+  --font-display: var(--font-fraunces), serif;
+  --font-body: var(--font-inter), -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), monospace;
+
+  --radius-card: 14px;
+  --radius-sm: 8px;
+
+  --container-maxw: 1160px;
+
+  /*
+    Custom breakpoints matching the original site's @media queries exactly.
+    Tailwind is "mobile-first": a bare class like `grid-cols-1` applies at
+    ALL sizes, and `tab:grid-cols-2` only kicks in once the viewport is 980px
+    OR WIDER. That's the opposite direction of the old max-width media
+    queries, so when we port a rule over, we flip which layout is the
+    "default" one — mobile layout first, desktop as the override.
+  */
+  --breakpoint-nav: 720px;
+  --breakpoint-tab: 980px;
+}
+
+/*
+  @layer base is where global element defaults live (the stuff that isn't a
+  utility class you apply per-element, but a baseline for the whole page) —
+  equivalent to the un-classed selectors at the top of the old styles.css.
+*/
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background: var(--color-bg);
+    color: var(--color-text);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  img,
+  svg {
+    display: block;
+    max-width: 100%;
+  }
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    margin: 0;
+    letter-spacing: -0.01em;
+  }
+
+  p {
+    margin: 0;
+  }
+
+  ::selection {
+    background: var(--color-green);
+    color: #04150f;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    * {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@keyframes waPulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(1.9);
+    opacity: 0;
+  }
+}
