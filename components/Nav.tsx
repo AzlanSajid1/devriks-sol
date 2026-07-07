@@ -86,6 +86,13 @@ export default function Nav() {
         </nav>
 
         <a
+          className="hidden text-[14.5px] text-muted transition-colors hover:text-text nav:block"
+          href="/login"
+        >
+          Log in
+        </a>
+
+        <a
           className="hidden items-center gap-2 rounded-full bg-green px-[18px] py-[10px] text-sm font-semibold text-[#04150F] transition-transform hover:-translate-y-px nav:inline-flex"
           href={waLink(WA_MESSAGES.general)}
           target="_blank"
@@ -129,6 +136,13 @@ export default function Nav() {
               {link.label}
             </a>
           ))}
+          <a
+            href="/login"
+            className="border-b border-border-soft py-3 text-[15px] text-muted"
+            onClick={() => setIsOpen(false)}
+          >
+            Log in
+          </a>
           <a
             className="mt-3.5 inline-flex items-center justify-center gap-2 rounded-full bg-green px-[18px] py-[10px] text-sm font-semibold text-[#04150F]"
             href={waLink(WA_MESSAGES.general)}
